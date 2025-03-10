@@ -230,13 +230,13 @@
       "languageVersion": "3.0"
     },
     {
-      "name": "print_bluetooth_thermal",
+      "name": "thermal_blue",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "3.5"
     }
   ],
-  "generated": "2025-03-10T07:54:43.952275Z",
+  "generated": "2025-03-10T07:55:33.644603Z",
   "generator": "pub",
   "generatorVersion": "3.7.0",
   "flutterRoot": "file:///C:/sdk/dev/flutter",
