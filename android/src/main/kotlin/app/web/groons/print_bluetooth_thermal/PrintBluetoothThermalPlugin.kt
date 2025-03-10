@@ -249,6 +249,11 @@ class PrintBluetoothThermalPlugin: FlutterPlugin, MethodCallHandler {
       }else{
         result.success(true);
       }
+    }else if(call.method = "openCashDrawerPin2"){
+      openCashDrawerPin2(result)
+    }
+    }else if(call.method = "openCashDrawerPin5"){
+      openCashDrawerPin5(result)
     }else {
       result.notImplemented()
     }
@@ -338,6 +343,37 @@ class PrintBluetoothThermalPlugin: FlutterPlugin, MethodCallHandler {
 
     return listItems;
   }
+
+  private fun openCashDrawerPin2(result: Result) {
+      if (outputStream == null) {
+          result.error("write_error", "not connected", null)
+          return
+      }
+      try {
+          val ESC_DRAWER_PIN2 = byteArrayOf(0x1B, 'p'.code.toByte(), 0x30)
+          outputStream?.write(ESC_DRAWER_PIN2)
+          result.success(true)
+      } catch (ex: Exception) {
+          Log.e(TAG, ex.message ?: "Unknown error", ex)
+          result.error("write_error", ex.message ?: "Unknown error", ex.toString())
+      }
+  }
+
+  private fun openCashDrawerPin5(result: Result) {
+      if (outputStream == null) {
+          result.error("write_error", "not connected", null)
+          return
+      }
+      try {
+          val ESC_DRAWER_PIN5 = byteArrayOf(0x1B, 'p'.code.toByte(), 0x31)
+          outputStream?.write(ESC_DRAWER_PIN5)
+          result.success(true)
+      } catch (ex: Exception) {
+          Log.e(TAG, ex.message ?: "Unknown error", ex)
+          result.error("write_error", ex.message ?: "Unknown error", ex.toString())
+      }
+  }
+
 
   private fun mensajeToast(mensaje: String){
     Toast.makeText(mContext, mensaje, Toast.LENGTH_SHORT).show()
