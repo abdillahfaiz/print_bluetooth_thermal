@@ -252,7 +252,7 @@ class PrintBluetoothThermalPlugin: FlutterPlugin, MethodCallHandler {
     }else if(call.method == "openCashDrawerPin2"){
       openCashDrawerPin2(result)
     }
-    }else if(call.method == "openCashDrawerPin5"){
+    else if(call.method == "openCashDrawerPin5"){
       openCashDrawerPin5(result)
     }else {
       result.notImplemented()
