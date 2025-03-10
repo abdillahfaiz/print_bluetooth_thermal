@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:print_bluetooth_thermal/print_bluetooth_thermal_windows.dart';
 
+
+
 class PrintBluetoothThermal {
   static const MethodChannel _channel = MethodChannel('groons.web.app/print');
 
@@ -15,7 +17,8 @@ class PrintBluetoothThermal {
       return true;
     } else if (Platform.isAndroid || Platform.isIOS || Platform.isMacOS) {
       try {
-        bluetoothState = await _channel.invokeMethod('ispermissionbluetoothgranted');
+        bluetoothState =
+            await _channel.invokeMethod('ispermissionbluetoothgranted');
         //if(kDebugMode) print("llego: $bluetoothState");
       } on PlatformException catch (e) {
         if (kDebugMode) print("Fallo Bluetooth status: '${e.message}'.");
@@ -136,7 +139,8 @@ class PrintBluetoothThermal {
         return false;
       }
     } else {
-      throw UnimplementedError("This functionality is not yet implemented. Please use the writeBytes option.");
+      throw UnimplementedError(
+          "This functionality is not yet implemented. Please use the writeBytes option.");
     }
   }
 
@@ -176,6 +180,18 @@ class PrintBluetoothThermal {
     } on PlatformException catch (e) {
       if (kDebugMode) print("Failed to disconnect: '${e.message}'.");
       return false;
+    }
+  }
+
+  static Future<void> get openCashDrawerPin2 async {
+    if (Platform.isAndroid || Platform.isIOS) {
+      try {
+        await _channel.invokeMethod("openCashDrawerPin2");
+      } on PlatformException catch (e) {
+        if (kDebugMode) {
+          print("Failed to Open Cash Drawer: '${e.message}'");
+        }
+      }
     }
   }
 }
